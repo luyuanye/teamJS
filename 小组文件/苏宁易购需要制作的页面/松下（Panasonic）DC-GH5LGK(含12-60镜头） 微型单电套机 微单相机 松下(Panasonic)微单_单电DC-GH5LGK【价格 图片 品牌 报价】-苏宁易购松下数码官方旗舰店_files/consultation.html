@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>苏宁易购-四级页-咨询</title>
+</head>
+<body>
+    <script src="push.js"></script><script type="text/javascript">
+        var host = location.hostname
+		if(/.*\.cnsuning.com/.test(host)){
+			document.domain = "cnsuning.com";
+		}else{
+			document.domain = "suning.com";
+		}
+		
+		var faq_passport_config = { 
+            base: "//faq.suning.com/", 
+            loginTheme: "b2c_pop" 
+        }; 
+    </script>
+    <div class="cs-wrap">
+    <div class="cs-container">
+        <!-- 咨询正文 -->
+        <div class="cs-main" id="cs-main">
+            <div class="cs-main-wrap">
+                <div class="cs-main-item">
+                    <script type="text/x-handlebars-template" id="cs-main-item">
+                        <ul class="cs-place-item clearfix">
+                            <li class="l now" data-type="4" data-num="{{totalCount}}">
+                                <p>全部咨询<span>({{totalCount}})</span></p>
+                            </li>
+                            <li class="l" data-type="5" data-num="{{proCount}}">
+                                <p>产品咨询<span>({{proCount}})</span></p>
+                            </li>
+                            <li class="l" data-type="6" data-num="{{invtCount}}">
+                                <p>库存配送<span>({{invtCount}})</span></p>
+                            </li>
+                            <li class="l" data-type="7" data-num="{{faCount}}">
+                                <p>发票保修<span>({{faCount}})</span></p>
+                            </li>
+                            <li class="l" data-type="8" data-num="{{payCount}}">
+                                <p>支付信息<span>({{payCount}})</span></p>
+                            </li>
+                            <li class="l" data-type="9" data-num="{{promCount}}">
+                                <p>促销优惠<span>({{promCount}})</span></p>
+                            </li>
+                            <li class="l" data-type="10" data-num="{{othCount}}">
+                                <p>其他问题<span>({{othCount}})</span></p>
+                            </li>
+                        </ul>
+                        {{#if selfSeller }}
+                            <div class="cs-place-goto">
+                                <span>如有问题，请</span>
+                                <a href="###" id="publish-consultation" class="publish-consultation">发表咨询</a>
+                            </div>
+                        {{else}}
+                            <div class="cs-place-goto">
+                                <span>如有问题，请联系</span><a href="{{onlineServer}}" class="cs-online-server">在线客服</a>
+                            </div>
+                        {{/if}}
+                    </script>
+                </div>
+                
+                <div class="cs-main-target">
+                    <script type="text/x-handlebars-template" id="cs-main-target">
+                        <div class="cs-target-item clearfix">
+                            {{#each res}}
+                                <div class="item clearfix" data-id="{{articleId}}">
+                                    <div class="left l">
+                                        <div class="question clearfix">
+                                            <div class="user l"><i class="cs-spring"></i><p class='nickname'>{{nickName}}</p></div>
+                                            <div class="content l"><p>{{ content }}</p></div>
+                                        </div>
+                                        <div class="answer clearfix">
+                                            <div class="user l"><i class="cs-spring"></i><p class='nickname'>{{ supplierName }}</p></div>
+                                            <div class="content l">{{ answer }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="right r">
+                                        <div class="time">
+                                            <span>{{ createTime }}</span> 
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                            
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+        <!-- 咨询分页 -->
+        <div class="ui-page clearfix">
+        	<div class="consult-place-goto l" style="display:none;">
+                 <a class="allurl rv-maidian" href="" target="_blank" data-now=" " data-cache="pjqh_ckqbpj">查看全部咨询&gt;</a>
+            </div>
+            <script type="text/x-handlebars-template" id="ui-page">
+	            
+                <div class="ui-page-item r">
+                    <div class="item r">
+                    <a class="prev"  href="javascript:void(0)"><i class="cs-spring"></i>上一页</a>
+                        {{#compare pageTotal 7 operator="<"  }}
+                            
+                            {{#range 1 pageTotal}}
+
+                                <a class="change" href="javascript:void(0)" data-num="{{ this }}">{{ this }}</a>
+
+                            {{/range}}
+                                
+                        {{/compare}}
+
+                        {{#compare pageTotal 7 operator="=="  }}
+
+                            {{#range 1 3}}
+
+                                <a class="change" href="javascript:void(0)" data-num="{{ this }}">{{ this }}</a>
+
+                            {{/range}}
+
+                            <span class="range">...</span>
+
+                            {{#range 4 pageTotal}}
+
+                                <a class="change" href="javascript:void(0)" data-num="{{ this }}">{{ this }}</a>
+                                
+                            {{/range}}
+
+                        {{/compare}}
+
+                        {{#compare pageTotal 7 operator=">"  }}
+
+                            {{#range 1 3}}
+
+                                <a class="change" href="javascript:void(0)" data-num="{{ this }}">{{ this }}</a>
+
+                            {{/range}}
+
+                            {{#compare pageNum 5 operator=">"  }}
+
+                                {{#compare pageNumNext pageTotal operator="<"  }}
+
+                                    <span class="range">...</span>
+
+                                    {{#range pageNumPrev pageNumNext}}
+
+                                        <a class="change" href="javascript:void(0)" data-num="{{ this }}">{{ this }}</a>
+
+                                    {{/range}}
+
+                                    <span class="range">...</span>
+
+                                    <a class="change" href="javascript:void(0)" data-num="{{ pageTotal }}">{{ pageTotal }}</a>
+
+                                {{/compare}}
+
+                                {{#compare pageNumNext pageTotal operator=">"  }}
+
+                                    <span class="range">...</span>
+
+                                    <a class="change" href="javascript:void(0)" data-num="{{ pageNumPrev }}">{{ pageNumPrev }}</a>
+
+                                    <a class="change" href="javascript:void(0)" data-num="{{ pageNum }}">{{ pageNum }}</a>
+
+                                {{/compare}}
+
+                                {{#compare pageNumNext pageTotal operator="=="  }}
+
+                                    <span class="range">...</span>
+
+                                    <a class="change" href="javascript:void(0)" data-num="{{ pageNumPrev }}">{{ pageNumPrev }}</a>
+
+                                    <a class="change" href="javascript:void(0)" data-num="{{ pageNum }}">{{ pageNum }}</a>
+
+                                    <a class="change" href="javascript:void(0)" data-num="{{ pageNumNext }}">{{ pageNumNext }}</a>
+
+                                {{/compare}}
+
+
+                            {{/compare}}
+
+                            {{#compare pageNum 5 operator="<="  }}
+
+                                {{#range 4 6 }}
+
+                                    <a class="change" href="javascript:void(0)" data-num="{{ this }}">{{ this }}</a>
+
+                                {{/range}}
+
+                                <span class="range">...</span>
+
+                                <a class="change" href="javascript:void(0)" data-num="{{ pageTotal }}">{{ pageTotal }}</a>
+                            {{/compare}}
+
+                        {{/compare}}
+                        
+                    <a class="next" href="javascript:void(0)" data-now=" ">下一页<i class="cs-spring"></i></a>
+                    </div>
+                </div>
+            </script>
+        </div>
+        <div class="cs-dialog" style="display:none;" id="publish-consultation-template">
+            <div class="cs-publish">
+                <div class="clearfix cs-publish-item"><span class="l key">分类：</span><div class="l value">
+                    <select name="" id="content-area"><option value="" data-type="5" selected="selected">产品咨询</option><option value="" data-type="6">库存配送</option><option value="" data-type="7">发票保修</option><option value="" data-type="8">支付信息</option><option value="" data-type="9">促销优惠</option><option value="" data-type="10">其他问题</option></select>
+                </div></div>
+                <div class="clearfix cs-publish-item"><span class="l key">内容：</span><div class="l value"><textarea name="" id="" cols="30" rows="10" max="150"></textarea><p>您还可以输入<em>150</em>个字符</p></div></div>
+                <div class="clearfix cs-publish-item"><span class="l key">验证码：</span><div class="l value"><input maxlength="4" id="verification-text" type="text"><img id="verification-img" src="consultation.html" alt="" width="60" height="22"><a href="javascript:void(0)" class="change">看不清楚?换一张!</a><em class="error-message">验证码是4位字符</em><i class="cs-spring"></i></div></div>
+                <div class="clearfix cs-publish-item"><span class="l key"></span><div class="l value"><a href="javascript:void(0)" class="submit">提交</a><span class="error-empty">请输入咨询内容</span></div></div>
+            </div>
+        </div>
+        
+        <div class="cs-notice" style="display:none;" id="cs-notice">
+        	<div class="cs-notice-item">
+        		<p class="cs-notice-content"></p>
+        		<div class="cs-notice-btn close"><a href="javascript:void(0)" class="close">确定</a></div>
+        	</div>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+</script>
+
+
+</body></html>
